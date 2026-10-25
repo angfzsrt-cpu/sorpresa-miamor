@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d13">
+<title>Una sorpresa para Miamor ❤️</title>
+<style>
+:root{--bg:#100d13;--panel:#1d1721;--pink:#f0b7ce;--gold:#e8c989;--white:#fff8fc;--muted:#cbbbc8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#382033 0%,#17111b 42%,#0c0a0f 100%);color:var(--white);font-family:Georgia,'Times New Roman',serif;display:flex;align-items:center;justify-content:center;padding:22px;overflow-x:hidden}
+.stars{position:fixed;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#e8c989 1px,transparent 1px);background-size:67px 67px,113px 113px;background-position:0 0,30px 45px}
+.card{position:relative;width:min(100%,560px);background:linear-gradient(155deg,rgba(39,27,43,.97),rgba(19,15,22,.98));border:1px solid rgba(232,201,137,.42);border-radius:24px;padding:clamp(25px,6vw,44px);box-shadow:0 24px 80px #0008;text-align:center}
+.eyebrow{font:11px/1.4 Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(30px,7vw,46px);font-weight:normal;line-height:1.12;margin:20px 0;color:var(--white)}
+p{font-size:17px;line-height:1.7;color:#e8dce6}
+.heart{font-size:40px;display:block;margin:12px auto;color:var(--pink);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+button{border:1px solid var(--gold);background:linear-gradient(135deg,#f0c5d5,#e8c989);color:#241520;padding:14px 22px;border-radius:999px;font-size:15px;font-weight:bold;cursor:pointer;margin-top:14px;transition:transform .2s}
+button:hover{transform:translateY(-2px)}
+button:focus-visible{outline:3px solid white;outline-offset:4px}
+.hidden{display:none}
+.progress{height:3px;background:#ffffff18;border-radius:9px;overflow:hidden;margin:28px 0 8px}
+.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width .5s}
+.small{font:12px Arial,sans-serif;color:var(--muted);margin-top:22px}
+.choice{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.choice button{margin:0;background:#2a202e;color:var(--white);border-color:#76566b}
+.choice button.yes{background:linear-gradient(135deg,#f5c8da,#e8c989);color:#241520;border:0}
+.note{border-top:1px solid #ffffff20;margin-top:26px;padding-top:18px;font:12px/1.6 Arial,sans-serif;color:#cbbbc8}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<main class="card" aria-live="polite">
+  <div class="eyebrow" id="eyebrow">Un pequeño misterio</div>
+  <section id="step1">
+    <span class="heart">✦</span>
+    <h1>Hola, Miamor...</h1>
+    <p>Alguien preparó algo para ute. No es un gran secreto, pero sí una pregunta que merece un momento especial.</p>
+    <button onclick="showStep(2)">Descubrir la sorpresa ✨</button>
+    <div class="small">Tómese su tiempo. Esta página es solo para ute.</div>
+  </section>
+  <section id="step2" class="hidden">
+    <span class="heart">♡</span>
+    <h1>Hay algo que quiero decirle</h1>
+    <p>A veces una persona llega sin hacer mucho ruido y, poco a poco, empieza a hacer que los días tengan algo diferente.</p>
+    <p>Y cuando me di cuenta, ute ya era alguien con quien quería compartir más momentos, risas y recuerdos bonitos.</p>
+    <button onclick="showStep(3)">Hay algo más… 💌</button>
+  </section>
+  <section id="step3" class="hidden">
+    <span class="heart">❦</span>
+    <h1>No quiero quedarme con las ganas de preguntarle</h1>
+    <p>No le prometo una historia perfecta; le propongo una historia sincera, con cariño, respeto, confianza y ganas de elegirnos cada día.</p>
+    <p>Y ahora sí, Miamor… llegó el momento de la pregunta.</p>
+    <button onclick="showStep(4)">Abrir la pregunta ❤️</button>
+  </section>
+  <section id="step4" class="hidden">
+    <div class="eyebrow">La pregunta es para ute</div>
+    <span class="heart">♥</span>
+    <h1>¿Quiere ser mi novia, Miamor?</h1>
+    <p>Me haría mucha ilusión empezar esta historia con ute. ❤️</p>
+    <div class="choice">
+      <button class="yes" onclick="answer('yes')">Sí, quiero ❤️</button>
+      <button onclick="answer('think')">Quiero pensarlo con calma 💗</button>
+    </div>
+    <div class="small">Cualquiera que sea su respuesta, gracias por llegar hasta aquí.</div>
+  </section>
+  <section id="finalyes" class="hidden">
+    <span class="heart">❤️</span>
+    <h1>Entonces, que empiece nuestra historia</h1>
+    <p>Miamor, gracias por darme esta oportunidad. Quiero que construyamos algo bonito, a nuestro ritmo y con mucho cariño. ✨</p>
+    <p>Este es el comienzo de algo que espero recordar con una sonrisa.</p>
+  </section>
+  <section id="finalthink" class="hidden">
+    <span class="heart">🌷</span>
+    <h1>Está bien, Miamor</h1>
+    <p>Tómese el tiempo que necesite. No hay presión ni apuro; lo importante es que se sienta cómoda y que su respuesta sea sincera. ❤️</p>
+  </section>
+  <div class="progress"><span id="bar"></span></div>
+  <div class="note">Hecho con cariño, especialmente para Miamor ✦</div>
+</main>
+<script>
+function showStep(n){
+  document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+  document.getElementById('step'+n).classList.remove('hidden');
+  document.getElementById('eyebrow').textContent = n===1?'Un pequeño misterio':n===4?'Un momento especial':'Una sorpresa para Miamor';
+  document.getElementById('bar').style.width = ((n-1)/3*100)+'%';
+}
+function answer(type){
+  document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+  document.getElementById(type==='yes'?'finalyes':'finalthink').classList.remove('hidden');
+  document.getElementById('eyebrow').textContent='Gracias por leer hasta aquí';
+  document.getElementById('bar').style.width='100%';
+}
+</script>
+</body>
+</html>
